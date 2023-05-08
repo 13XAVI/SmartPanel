@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+    <link rel="stylesheet" th:href="@{/css/List.css}" />
+</head>
+<body>
+<div align="center">
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <h1>Welcome <b th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.fullName : 'Guest'}"></b></h1>
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+    <h1>List of User</h1>
+    <a href="new">Create New User</a>
+    <br><br>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>User ID</th>
+             <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="users :${listUsers}">
+            <td th:text="${users.id}">User Id</td>
+            <td th:text="${users.firstname}">First Name</td>
+            <td th:text="${users.lastname}">Last name</td>
+            <td th:text="${users.gender}" >
+                <select id="gender" name="gender"  >
+                    <option value="gender" >Male</option>
+                    <option value="gender" >Female</option>
+                </select>
+            </td>
+            <td th:text="${users.address}">Address</td>
+            <td th:text="${users.email}">Email</td>
+            <td th:text="${users.password}"> Password</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
