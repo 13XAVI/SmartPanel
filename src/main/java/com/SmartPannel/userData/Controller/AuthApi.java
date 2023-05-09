@@ -3,6 +3,7 @@ package com.SmartPannel.userData.Controller;
 import com.SmartPannel.userData.JWT.jwtTokenApi;
 import com.SmartPannel.userData.Model.UserResponse;
 import com.SmartPannel.userData.Model.Users;
+import com.SmartPannel.userData.Service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +17,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
+
 @Controller
+@RequestMapping
+@CrossOrigin("*")
 public class AuthApi {
     @Autowired
     AuthenticationManager authManager;
     @Autowired
     jwtTokenApi tokenApi;
+
+    @Autowired
+    private ProductService service;
+
 
     @GetMapping("/auth/login")
     public String login(Model model) {

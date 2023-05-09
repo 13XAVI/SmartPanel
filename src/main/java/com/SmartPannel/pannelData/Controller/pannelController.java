@@ -6,6 +6,7 @@ import com.SmartPannel.userData.Model.Users;
 import com.SmartPannel.userData.Service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
@@ -25,13 +26,25 @@ import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.util.List;
 
+
+
 @RestController
+@RequestMapping
+@CrossOrigin("*")
 public class pannelController {
     @Autowired
     private ProductService service;
 
     @Autowired
     private userRepository userRepo;
+
+    @PostMapping("/Register")
+    @RolesAllowed({"ROLE_CUSTOMER", "ROLE_DISTRIBUTOR","ROLE_ADMIN"})
+    public ResponseEntity<?> RegisterNew(@RequestBody Users users){
+        Users saveUser = userRepo.save(users);
+        return ResponseEntity.ok(users);
+
+    }
 
     @GetMapping("/ListProducts")
     @RolesAllowed({"ROLE_CUSTOMER", "ROLE_DISTRIBUTOR"})
