@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.util.List;
 
-@Controller
+@RestController
 public class pannelController {
     @Autowired
     private ProductService service;
