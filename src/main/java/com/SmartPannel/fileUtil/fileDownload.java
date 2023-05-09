@@ -12,17 +12,18 @@ import java.nio.file.Paths;
 
 public class fileDownload {
     private Path foundFile;
- public Resource getFileResource(String fileCode) throws IOException {
+ public Resource getFileResource(String filecode) throws IOException {
 
-     Path uploadDir = Paths.get("Files-Upload");
+     Path uploadDir = Paths.get("File-Upload");
      Files.list(uploadDir).forEach(file ->{
-         if(file.getFileName().toString().startsWith(fileCode)){
+         if(file.getFileName().toString().startsWith(filecode)){
             foundFile = file;
             return;
          }
      });
      if(foundFile!=null){
          return new UrlResource(foundFile.toUri());
+
      }
      return null;
  }

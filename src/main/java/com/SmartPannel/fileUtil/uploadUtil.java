@@ -1,5 +1,7 @@
 package com.SmartPannel.fileUtil;
 
+import net.bytebuddy.utility.RandomString;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -10,13 +12,16 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class uploadUtil {
-    public static  void saveFile(String fileName, MultipartFile multipartFile) throws IOException {
+    public static  String saveFile(String fileName, MultipartFile multipartFile) throws IOException {
+
+        String filecode= RandomStringUtils.randomAlphanumeric(8);
         Path uploadDir = Paths.get("File-Upload");
         try(InputStream inputStream = multipartFile.getInputStream()) {
-            Path filePath = uploadDir.resolve(fileName);
+            Path filePath = uploadDir.resolve(filecode+"-"+fileName);
             Files.copy(inputStream,filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ioException) {
             throw new IOException("Error while saving"+fileName, ioException);
         }
+        return  filecode;
     }
 }
