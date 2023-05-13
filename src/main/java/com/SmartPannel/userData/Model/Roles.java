@@ -3,6 +3,7 @@ package com.SmartPannel.userData.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.bytebuddy.implementation.bind.annotation.Default;
 import net.bytebuddy.implementation.bind.annotation.Super;
 
 import javax.persistence.*;

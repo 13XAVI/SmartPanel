@@ -1,8 +1,11 @@
 package com.SmartPannel.userData.Model;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,9 +24,11 @@ import java.util.*;
 public class Users  implements UserDetails  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private Long id;
     private String name;
     @Column(nullable = false,unique = true)
+    @NotEmpty
     private String email;
     private String password;
 

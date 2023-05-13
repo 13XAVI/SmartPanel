@@ -54,4 +54,5 @@ public class fileUploadDownloadController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION,headerValue).body(resource);
     }
+
 }
