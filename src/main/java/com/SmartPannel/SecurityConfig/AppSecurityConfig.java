@@ -24,6 +24,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -68,7 +69,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+    @Configuration
+    public class MvcConfig implements WebMvcConfigurer {
 
+        @Override
+        public void addViewControllers(ViewControllerRegistry registry) {
+            registry.addViewController("/HomePage").setViewName("Home");
+        }
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -86,6 +94,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                  .antMatchers("/auth/Register")
                  .permitAll()
                  .antMatchers("/auth/login")
+                 .permitAll()
+                 .antMatchers("/HomePage")
                  .permitAll()
                  .anyRequest()
                  .authenticated();

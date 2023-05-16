@@ -34,6 +34,10 @@ public class jwtTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        if (requestURI.equals("/HomePage")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         String header = request.getHeader("Authorization");
                 System.out.println("Auth Header: "+header);

@@ -55,6 +55,8 @@ public class AuthApiUsers {
         model.addAttribute("userRequest", new Users());
         return "redirect:loginHandle";
     }
+
+
     @PostMapping("/auth/login")
 
     public ResponseEntity <?> loginHandle(@RequestBody  Users request) {
@@ -76,14 +78,15 @@ public class AuthApiUsers {
     }
 
 
-        @PostMapping("/auth/Register")
-        public ResponseEntity<Users> saveUser(@Valid @RequestBody Users users) {
+        @RequestMapping("/auth/Register")
+        public ModelAndView saveUser(@Valid @RequestBody Users users) throws Exception {
             try {
                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
                 String encoded = encoder.encode(users.getPassword());
                 System.out.println(users.getPassword());
                 users.setPassword(encoded);
 
+                ModelAndView mav = new ModelAndView("SignupH");
                 Roles customer = new Roles(2L,"ROLE_CUSTOMER");
                 users.getRoles().add(customer);
                 userService.saveUser(users);
@@ -92,12 +95,19 @@ public class AuthApiUsers {
                 message.setSubject("Welcome to Smart Panel!");
                 message.setText("Dear " + users.getUsername() + ",\n\nThank you for registering with us. We look forward to serving you.\n\nBest regards,\nThe Hotel Team");
                 //mailSender.send(message);
-                return ResponseEntity.status(HttpStatus.CREATED).body(users);
+                return mav;
             } catch (Exception e) {
                 e.printStackTrace();
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+                throw new Exception("Internal Server Error");
             }
         }
+
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView handleException(Exception ex) {
+//        ModelAndView mav = new ModelAndView("/500"); // Assuming "ErrorPage" is the Thymeleaf template name for displaying error
+//        mav.addObject("errorMessage", ex.getMessage());
+//        return mav;
+//    }
 
     @PostMapping("/grantRole")
     @RolesAllowed("ROLE_ADMIN")

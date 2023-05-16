@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<h1>Authorization Token: <span th:text="${eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzLElyYWtvemVAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9DVVNUT01FUiIsIlJPTEVfRElTVFJJQlVUT1IiXSwiaXNzIjoiU21hcnRQYW5lbCIsImlhdCI6MTY4NDA3NjAxMywiZXhwIjoxNjg0MTYyNDEzfQ.iXoYBdaeW1MMM6ubEzp0CFbF-OTyHMr9K2RZe2skJCM}"></span></h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+        <link rel="stylesheet" th:href="@{/css/Home.css}" />
+
+
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src="../img/panelLogo.png" alt="Logo">
+                </div>
+                <ul class="menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a th:href="@{/AboutUs}">About</a></li>
+                    <li><a th:href="@{/Contact}">Contact</a></li>
+                    <li><a th:href="@{/auth/Register}" class="btn btn-primary">Register</a></li>
+                </ul>
+            </nav>
+        </header>
+<!--        <div th:replace="/header.html :: header"></div>-->
+        <div class="hero">
+            <div class="container">
+                <h1>Welcome to Smart Panel Website</h1>
+                <p>The Future of Energy is Here</p>
+            </div><br/><br/>
+            <div class="search">
+                <form action="/search" method="GET" name="search">
+                    <input type="text" name="query" placeholder="Search..." >
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <p th:text="${message}"></p>
+        <div class="separator">
+            <a th:href="@{/new}" class="button">Add Panel</a>
+            <a th:href="@{/list_Hotel}" class="button">List Panek</a>
+            <a th:href="@{/list_users}" class="button">Testimonials</a>
+            <a th:href="@{/panelCost}" class="button">Calculate Cost</a>
+        </div>
+
+        <h1>10WTS</h1>
+        <div class="big-card">
+            <div class="card">
+                <img src="../img/10Wts/ecoworth.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../img/solalEnz.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../img/SunnerPower.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+        </div>
+        <h1>20WTS</h1>
+       <div class="big-card">
+           <div class="card">
+               <div class="img-container">
+                   <img src="../img/2Apower.jpg" alt="Avatar" >
+               </div>
+           <div class="container">
+
+               <h4><b>Virunga Hotel</b></h4>
+               <h4><b>Available Rooms: 140</b></h4>
+               <h4><b>Ratings: 5 Star</b></h4>
+               <p>Address:Musanze</p>
+           </div>
+         </div>
+           <div class="card">
+               <img src="../img/FlexSolar.jpg" alt="Avatar">
+               <div class="container">
+                   <h4><b>Raddison Hotel</b></h4>
+                   <h4><b>Available Rooms: 250</b></h4>
+                   <h4><b>Ratings: 5 Star</b></h4>
+                   <p>Address:Kiyovu</p>
+               </div>
+           </div>
+           <div class="card">
+               <img src="../img/olperk.jpg" alt="Avatar" style="width:100%">
+               <div class="container">
+                   <h4><b>Raddison Hotel</b></h4>
+                   <h4><b>Available Rooms: 250</b></h4>
+                   <h4><b>Ratings: 5 Star</b></h4>
+                   <p>Address:Kiyovu</p>
+               </div>
+           </div>
+       </div>
+        <h1>50WTS</h1>
+        <div class="big-card">
+            <div class="card">
+                <img src="../img/newpowa.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Serena Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Gisenyi</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../img/Sunner.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../img/SunSul.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+        </div>
+        <h1>100WTS</h1>
+        <div class="big-card">
+            <div class="card">
+                <img src="../img/Allpow.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kimihurura</p>
+                </div>
+            </div>
+        </div>
+        <h1>200WTS</h1>
+        <div class="big-card">
+            <div class="card">
+                <img src="../img/HQSt.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../img/newpowa.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../img/WEiz.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+        </div>
+        <h1>300WTS</h1>
+        <div class="big-card">
+            <div class="card">
+                <img src="../img/300Dokio.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../img/AccoPower.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="../img/Renogy.jpg" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Raddison Hotel</b></h4>
+                    <h4><b>Available Rooms: 250</b></h4>
+                    <h4><b>Ratings: 5 Star</b></h4>
+                    <p>Address:Kiyovu</p>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

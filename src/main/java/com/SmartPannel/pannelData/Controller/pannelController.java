@@ -9,13 +9,17 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.ui.Model;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.time.temporal.ValueRange;
 import java.util.List;
@@ -28,6 +32,17 @@ import java.util.List;
 public class pannelController {
     @Autowired
     private ProductService service;
+
+    @GetMapping("/HomePage")
+    public ModelAndView viewHomePage(Model model, @RequestHeader("Authorization") String authorization) {
+        ModelAndView modelAndView = new ModelAndView("Home");
+        model.addAttribute("token", authorization);
+        return modelAndView;
+    }
+
+
+
+
 
     @GetMapping("/ListProducts")
     @ResponseBody

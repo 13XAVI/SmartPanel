@@ -1,6 +1,8 @@
+function validateForm(){
 const emailInput = document.querySelector('input[type="email"]');
 const passwordInput = document.querySelector('input[type="password"]');
 const signUpButton = document.querySelector('#form1 button');
+const signUpButton = document.querySelector('#form2 button');
 
 signUpButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -18,6 +20,7 @@ signUpButton.addEventListener("click", (e) => {
   }
 });
 
+}
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
