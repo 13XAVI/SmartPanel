@@ -9,8 +9,9 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 public interface panelRepository extends JpaRepository <panelSpecification,Long> {
-    @Query("SELECT p.type, p.maxpowerOutput, p.dimensions, p.weight, p.price, p.warrant\n" +
-            "FROM panelSpecification p\n" +
-            "WHERE p.type LIKE :keyword\n")
-    List<panelSpecification> findByKeyword(String keyword);
+    @Query("SELECT p.type, p.maxpowerOutput, p.dimensions, p.weight, p.price, p.warrant " +
+            "FROM panelSpecification p " +
+            "WHERE p.type LIKE %:keyword%")
+
+    List<panelSpecification> findByKeyword(@Param("keyword")String keyword );
 }
