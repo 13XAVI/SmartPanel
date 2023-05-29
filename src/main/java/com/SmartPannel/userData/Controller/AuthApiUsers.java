@@ -84,7 +84,7 @@ public class AuthApiUsers {
     public class UserController {
 
         @PostMapping
-        public ResponseEntity<?> saveUser(@Valid @RequestBody Users users) throws Exception {
+        public ResponseEntity<Users> saveUser(@Valid @RequestBody Users users) throws Exception {
             try {
                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
                 String encoded = encoder.encode(users.getPassword());
