@@ -93,7 +93,7 @@ public class AuthApiUsers {
 
                 Roles customer = new Roles(2L, "ROLE_CUSTOMER");
                 users.getRoles().add(customer);
-                userService.saveUser(users);
+                userRepo.save(users);
 
                 SimpleMailMessage message = new SimpleMailMessage();
                 message.setTo(users.getUsername());
