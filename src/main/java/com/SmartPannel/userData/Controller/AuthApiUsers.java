@@ -78,29 +78,37 @@ public class AuthApiUsers {
     }
 
 
-        @RequestMapping("/auth/Register")
-        public ModelAndView saveUser(@Valid @RequestBody Users users) throws Exception {
+
+    @RestController
+    @RequestMapping("/auth/Register")
+    public class UserController {
+
+        @PostMapping
+        public ResponseEntity<?> saveUser(@Valid @RequestBody Users users) throws Exception {
             try {
                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
                 String encoded = encoder.encode(users.getPassword());
                 System.out.println(users.getPassword());
                 users.setPassword(encoded);
 
-                ModelAndView mav = new ModelAndView("SignupH");
-                Roles customer = new Roles(2L,"ROLE_CUSTOMER");
+                Roles customer = new Roles(2L, "ROLE_CUSTOMER");
                 users.getRoles().add(customer);
                 userService.saveUser(users);
+
                 SimpleMailMessage message = new SimpleMailMessage();
                 message.setTo(users.getUsername());
                 message.setSubject("Welcome to Smart Panel!");
                 message.setText("Dear " + users.getUsername() + ",\n\nThank you for registering with us. We look forward to serving you.\n\nBest regards,\nThe Hotel Team");
                 //mailSender.send(message);
-                return mav;
+
+                return ResponseEntity.ok().build();
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new Exception("Internal Server Error");
             }
         }
+    }
+
 
 //    @ExceptionHandler(Exception.class)
 //    public ModelAndView handleException(Exception ex) {
