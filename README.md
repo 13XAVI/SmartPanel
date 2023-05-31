@@ -18,8 +18,32 @@ Backend API Link : http://smartpanel-production.up.railway.app/
 | DELETE     | http://smartpanel-production.up.railway.app/Delete/product/1            | Endpoint to Delete one Product                                          |
 | GET        | http://smartpanel-production.up.railway.app/products/find/              | Endpoint to Search for Product                                          |
 | POST       | http://smartpanel-production.up.railway.app/fileUpload                  | Endpoint to Upload a file content                                       |
-| PUT        | http://smartpanel-production.up.railway.app/downloadFile/{filecode}     | Endpoint to Download a file content                                     |
+| PUT        | http://smartpanel-production.up.railway.app/downloadFile/Zhby75S9       | Endpoint to Download a file content                                     |
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Features
+
+.Signup 
+.Login
+.Grant Role By Admin
+.CRUD Operation For User
+.Home Page
+.CRUD Operation For Product
+.Upload File
+.Download File
+.Search
+.App Cashing
+
+System Design
+https://github.com/13XAVI/SmartPanel/assets/101405347/c98c1a10-79af-474a-9b6e-bc139ec7a203
+
+Role DataBase
+https://github.com/13XAVI/SmartPanel/assets/101405347/f7ae21e8-b7c6-4dc6-94db-b9f622db2da3
+
+Access all endpoints on this url
+
+  http://localhost:8080
+
+
+
   
