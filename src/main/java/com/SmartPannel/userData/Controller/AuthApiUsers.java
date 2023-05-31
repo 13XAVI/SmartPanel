@@ -57,7 +57,7 @@ public class AuthApiUsers {
 
 
 
-    @PostMapping("/auth/login")
+    @RequestMapping("/auth/login")
     @Cacheable(value = "SmartPanelUsers")
     public ResponseEntity <?> loginHandle(@RequestBody @Valid Users request) {
         try {
