@@ -59,7 +59,7 @@ public class AuthApiUsers {
 
 
     @RequestMapping("/auth/login")
-    @Cacheable(value = "SmartPanelUsers")
+//    @Cacheable(value = "SmartPanelUsers")
     public ResponseEntity <?> loginHandle(@RequestBody @Valid Users request) {
         try {
 //            System.out.println("Email: " + request.getEmail() + ", Password: " + userRequest.getPassword());
@@ -80,7 +80,7 @@ public class AuthApiUsers {
     @RequestMapping("/auth/Register")
 
         @PostMapping
-        @CachePut(value = "SmartPanelUsers", key = "#id")
+//        @CachePut(value = "SmartPanelUsers", key = "#id")
         public ResponseEntity<Users> saveUser(@Valid @RequestBody Users users ) throws Exception {
             try {
                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -114,7 +114,7 @@ public class AuthApiUsers {
 
     @PostMapping("/grantRole")
     @RolesAllowed("ROLE_ADMIN")
-    @Cacheable(value = "SmartPanelUsers",key = "#id")
+//    @Cacheable(value = "SmartPanelUsers",key = "#id")
 
     public ResponseEntity<String> grantRoleToUser(@RequestParam("userId") Long userId, @RequestParam("roleId") Long roleId) {
         Users user = repo.findById(userId).orElse(null);
@@ -131,7 +131,7 @@ public class AuthApiUsers {
 
 
     @GetMapping("/Users/get/{UserId}")
-    @Cacheable(value = "SmartPanelUsers")
+//    @Cacheable(value = "SmartPanelUsers")
     @RolesAllowed({"ROLE_CUSTOMER", "ROLE_DISTRIBUTOR", "ROLE_ADMIN"})
     public ResponseEntity<?> getUserById(@PathVariable("UserId") Long UserId) {
         Optional<Users> users = userService.getUser(UserId);
@@ -144,7 +144,7 @@ public class AuthApiUsers {
 
     @RolesAllowed("ROLE_ADMIN")
     @PutMapping("/Users/Update/{id}")
-    @CachePut(value = "SmartPanelUsers",key = "#id")
+//    @CachePut(value = "SmartPanelUsers",key = "#id")
     public ResponseEntity<Users> updateUser(@PathVariable("id") Long id, @Valid @RequestBody Users users) {
         try {
             Optional<Users> existingUser = repo.findById(id);
@@ -176,7 +176,7 @@ public class AuthApiUsers {
 
     @DeleteMapping("/Users/Delete/{UserId}")
     @RolesAllowed({"ROLE_CUSTOMER", "ROLE_DISTRIBUTOR", "ROLE_ADMIN"})
-    @CacheEvict(value = "SmartPanelUsers" ,key = "#id")
+//    @CacheEvict(value = "SmartPanelUsers" ,key = "#id")
     public ResponseEntity<?> DeleteUser(@PathVariable("UserId") Long UserId) {
         Optional<Users> users = userService.getUser(UserId);
         userService.deleteUser(UserId);
@@ -197,7 +197,7 @@ public class AuthApiUsers {
 
 
     @GetMapping("/find/{userId}")
-    @Cacheable(value = "SmartPanelUsers", key = "#id")
+//    @Cacheable(value = "SmartPanelUsers", key = "#id")
     public ResponseEntity<Users> getUser(@PathVariable("id") Long userId) {
         Optional<Users> user = userService.getUser(userId);
         return user.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
