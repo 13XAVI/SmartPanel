@@ -40,6 +40,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin("*")
 @RequiredArgsConstructor
+@RequestMapping
 public class AuthApiUsers {
     @Autowired
     AuthenticationManager authManager;
