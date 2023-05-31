@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class jwtTokenApi {
-    private static final long EXPIRE_DURATION = 24*60*60*1000;
+    private static final long EXPIRE_DURATION = 24*60*60*1000*365;
     private static final Logger LOGGER =  LoggerFactory.getLogger(jwtTokenApi.class);
     @Value("${AppJwtSecretKey}")
     private  String secreteKey;

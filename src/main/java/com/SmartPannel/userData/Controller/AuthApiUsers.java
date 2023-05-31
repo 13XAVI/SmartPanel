@@ -10,6 +10,8 @@ import com.SmartPannel.userData.Model.Users;
 import com.SmartPannel.pannelData.panelService.ProductService;
 import com.SmartPannel.userData.Service.UserService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +36,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class AuthApiUsers {
     @Autowired
     AuthenticationManager authManager;
@@ -41,8 +44,7 @@ public class AuthApiUsers {
     jwtTokenApi tokenApi;
     @Autowired
     private UserService userService;
-    @Autowired
-    private userRepository userRepo;
+
     @Autowired
     private roleRepository roleRepo;
     @Autowired
@@ -50,50 +52,38 @@ public class AuthApiUsers {
     @Autowired
     private JavaMailSender mailSender;
 
-    @GetMapping("/auth/login")
-    public String login(Model model) {
-        model.addAttribute("userRequest", new Users());
-        return "redirect:loginHandle";
-    }
 
 
     @PostMapping("/auth/login")
-
-    public ResponseEntity <?> loginHandle(@RequestBody  Users request) {
+    public ResponseEntity <?> loginHandle(@RequestBody @Valid Users request) {
         try {
 //            System.out.println("Email: " + request.getEmail() + ", Password: " + userRequest.getPassword());
             Authentication authentication = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
             Users user = (Users) authentication.getPrincipal();
             String accessToken = tokenApi.generateAccToken(user);
+//            System.out.println(accessToken);
             UserResponse  response = new UserResponse(user.getEmail(),accessToken);
-
-            ModelAndView mav = new ModelAndView("userResponse");
-            mav.addObject("userResponse", response);
             return ResponseEntity.ok(response);
         } catch (BadCredentialsException exception) {
-            ModelAndView mav = new ModelAndView("unauthorized");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 
 
 
-    @RestController
     @RequestMapping("/auth/Register")
-    public class UserController {
 
         @PostMapping
-        public ResponseEntity<Users> saveUser(@Valid @RequestBody Users users) throws Exception {
+        public ResponseEntity<Users> saveUser(@Valid @RequestBody Users users ) throws Exception {
             try {
                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
                 String encoded = encoder.encode(users.getPassword());
-                System.out.println(users.getPassword());
                 users.setPassword(encoded);
 
                 Roles customer = new Roles(2L, "ROLE_CUSTOMER");
                 users.getRoles().add(customer);
-                userRepo.save(users);
+                userService.saveUser(users);
 
                 SimpleMailMessage message = new SimpleMailMessage();
                 message.setTo(users.getUsername());
@@ -101,13 +91,12 @@ public class AuthApiUsers {
                 message.setText("Dear " + users.getUsername() + ",\n\nThank you for registering with us. We look forward to serving you.\n\nBest regards,\nThe Hotel Team");
                 //mailSender.send(message);
 
-                return ResponseEntity.ok().build();
+                return ResponseEntity.ok().body(users);
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new Exception("Internal Server Error");
             }
         }
-    }
 
 
 //    @ExceptionHandler(Exception.class)

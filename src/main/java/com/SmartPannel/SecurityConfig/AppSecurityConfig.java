@@ -91,11 +91,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
          http.authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll();
          http.authorizeRequests()
-                 .antMatchers("/auth/Register")
-                 .permitAll()
-                 .antMatchers("/auth/login")
-                 .permitAll()
-                 .antMatchers("/HomePage")
+                 .antMatchers("/auth/Register","/auth/login")
                  .permitAll()
                  .anyRequest()
                  .authenticated();

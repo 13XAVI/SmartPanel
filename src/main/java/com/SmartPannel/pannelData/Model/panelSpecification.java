@@ -25,6 +25,6 @@ public class panelSpecification implements Serializable {
     private String weight;
     private String price;
     private String warrant;
-
+    private String panelAddress;
 
 }

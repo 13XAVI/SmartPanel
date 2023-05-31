@@ -21,7 +21,7 @@ import java.io.IOException;
 @CrossOrigin("*")
 public class fileUploadDownloadController {
     @PostMapping("fileUpload")
-    @RolesAllowed("ROLE_ADMIN")
+    @RolesAllowed({"ROLE_ADMIN","ROLE_CUSTOMER","ROLE_DISTRIBUTOR"})
     public ResponseEntity<fileUpload> FileUpload (@RequestParam("file")MultipartFile multipartFile) throws IOException {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         long size = multipartFile.getSize();
