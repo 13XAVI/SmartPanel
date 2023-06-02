@@ -24,14 +24,23 @@ Backend API Link : http://smartpanel-production.up.railway.app/
 Features
 
 .Signup 
+
 .Login
+
 .Grant Role By Admin
+
 .CRUD Operation For User
+
 .Home Page
+
 .CRUD Operation For Product
+
 .Upload File
+
 .Download File
+
 .Search
+
 .App Cashing
 
 System Design
