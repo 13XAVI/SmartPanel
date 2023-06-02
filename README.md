@@ -35,6 +35,8 @@ Features
 .App Cashing
 
 System Design
+https://github.com/13XAVI/SmartPanel/assets/101405347/829fcea6-7ff2-4540-a959-d07223545fb7
+
 https://github.com/13XAVI/SmartPanel/assets/101405347/c98c1a10-79af-474a-9b6e-bc139ec7a203
 
 Role DataBase
